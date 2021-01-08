@@ -1,0 +1,95 @@
+html,
+body,
+body > div,
+aside,
+main {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: #444444;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.43;
+  overflow-y: scroll;
+  letter-spacing: 0.018em;
+  margin: 0;
+  p {
+    font-size: 1rem;
+  }
+  scroll-behavior: smooth;
+}
+
+$colorPrimary: #040c17;
+
+::-webkit-scrollbar {
+  width: 0.6em;
+  height: 0.7rem;
+  background-color: #f1f1f1;
+  position: absolute;
+  left: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  transition: all ease-in-out 1s;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9b9b9b;
+  border-radius: 1rem;
+}
+
+aside {
+  background-color: $colorPrimary;
+  transition: all ease-in-out 0.3s;
+  .avator {
+    border: 8px solid #2c2f3f;
+    width: 148px;
+    height: 148px;
+  }
+  .profile {
+    width: 300px;
+  }
+}
+
+main {
+  transition: all ease-in-out 0.3s;
+
+  section {
+    &:first-child {
+      background: url("../img/background.jpg") no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      &::before {
+        content: "";
+        background: rgba(5, 13, 24, 0.3);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+      .name {
+        top: 30%;
+        z-index: 1;
+        left: 12%;
+        font-family: "Raleway", sans-serif;
+        font-size-adjust: 100%;
+        font-size: 3.5rem;
+        font-weight: 600;
+        line-height: 3.5rem;
+      }
+    }
+    &:nth-child(2) {
+      li {
+        font-size: 0.95rem;
+        strong {
+          font-size: initial;
+        }
+      }
+    }
+  }
+}
