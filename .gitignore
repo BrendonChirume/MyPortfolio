@@ -11,6 +11,9 @@
 # production
 /build
 
+# third parties
+ngrok.exe
+
 # misc
 .DS_Store
 .env.local
