@@ -7,6 +7,7 @@ import "normalize.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "./assets/css/main.css";
 import "normalize.css";
+import "aos/dist/aos.css";
 
 const App = (
   <BrowserRouter>
