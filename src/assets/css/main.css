@@ -17,7 +17,7 @@ body {
   color: #333333;
   font-size: 1rem;
   font-weight: normal;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: sans-serif;
   line-height: 1.43;
   overflow-y: scroll;
   letter-spacing: 0.018em;
@@ -75,15 +75,13 @@ aside {
   z-index: 5;
 }
 
+aside nav {
+  overflow-x: hidden;
+}
+
 aside .avator {
   width: 170px;
   height: 170px;
-}
-
-aside .social-network {
-  position: absolute;
-  bottom: 2%;
-  left: 13%;
 }
 
 aside .social-network li {
@@ -94,6 +92,7 @@ aside .social-network li {
 aside .social-network li a {
   width: 40px;
   height: 40px;
+  z-index: 1;
   background-color: #4f5154;
 }
 
@@ -135,6 +134,7 @@ aside .pic-art {
   opacity: 0.2;
   right: -10%;
   bottom: -10%;
+  z-index: -1;
 }
 
 aside .nav-menu {
@@ -150,13 +150,26 @@ aside .nav-menu li {
 
 aside .nav-menu li a {
   color: #a8a9b4;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+aside .nav-menu li a i {
+  font-size: 1.095rem;
+}
+
+aside .nav-menu li a:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.213);
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
 }
 
 aside .nav-menu li .active-nav-link {
   color: white;
-  background-color: #000;
-  -webkit-transition: all 0.7s;
-  transition: all 0.7s;
+  background-color: rgba(0, 0, 0, 0.446);
+  -webkit-transition: background-color 0.7s;
+  transition: background-color 0.7s;
 }
 
 main section {
@@ -169,6 +182,21 @@ main section:not(:first-child) {
   transition: all ease-in-out 0.3s;
 }
 
+main section:not(:first-child) h2::after {
+  content: "";
+  border-bottom: 4px solid #1683d6;
+  width: 85px;
+  left: 0;
+  position: absolute;
+  bottom: 5px;
+  border-radius: 7px;
+}
+
+main section .fix {
+  height: 100vh;
+  width: 100%;
+}
+
 main section h2,
 main section h3 {
   color: #0a2448;
@@ -176,7 +204,7 @@ main section h3 {
 }
 
 main section:first-child {
-  background: url("https://startbootstrap.github.io/startbootstrap-creative/assets/img/bg-masthead.jpg") no-repeat;
+  background: url("../img/bg-masthead.jpg") no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: right 0 top 0%;
@@ -198,17 +226,18 @@ main section:first-child .name {
   z-index: 1;
   left: 33%;
   line-height: 70px;
+  font-family: sans-serif;
 }
 
 main section:first-child .name h2 {
-  font-family: "montserrat", sans-serif;
   font-size: 6.875rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #e8e8e8;
+  -webkit-text-stroke: 2px #e8e8e8;
 }
 
 main section:first-child .name h6 {
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 500;
 }
 
@@ -233,6 +262,34 @@ main section:first-child .show-sidebar-btn div {
   height: 30px;
 }
 
+main section:first-child [data-role="cursor"] {
+  border-right: 2px solid white;
+  font-size: 20px;
+}
+
+main section:first-child .blink {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+main section:first-child [data-name="type-writer-effect"] {
+  padding-bottom: 3px;
+  margin-right: 2px;
+  border-bottom: 2px solid #1683d6;
+}
+
 main section:nth-child(2) li {
   font-size: 0.95rem;
   line-height: 2;
@@ -246,6 +303,14 @@ main section:nth-child(3) .progress-bar-wrap {
   height: 0.65rem;
 }
 
+main section:nth-child(3) .show-more-btn {
+  cursor: pointer;
+}
+
+main section:nth-child(3) .credentials h3 {
+  color: #252b33;
+}
+
 main section:nth-child(3) .skill {
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
@@ -255,19 +320,51 @@ main section:nth-child(3) .progress-bar {
   background-color: #24292e;
 }
 
+main #reviews .quote-clients {
+  font-size: xxx-large;
+}
+
+main #reviews .avator {
+  height: 73px;
+  width: 73px;
+  font-size: xx-large;
+}
+
+main #reviews .mansory {
+  width: 225px;
+  height: 338px;
+}
+
 footer {
   background-color: #f8f9fa;
 }
 
 @media only screen and (max-width: 990px) {
+  main section:first-child {
+    background: url("../img//bg-masthead-mobile.jpg");
+    background-size: cover;
+    background-repeat: inherit;
+  }
+  main section:first-child .name {
+    left: 10%;
+    bottom: 15%;
+  }
   main section:first-child .name h1 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
   }
   main section:first-child .name h2 {
-    font-size: 2.875rem;
+    font-size: 3.875rem;
+  }
+  main section:first-child .name [data-name="type-writer-effect"] {
+    padding-bottom: 2px;
   }
   main section:not(:first-child) {
     margin-left: 0;
   }
+}
+
+footer .pipe {
+  font-weight: 600;
+  font-size: 1rem;
 }
 /*# sourceMappingURL=main.css.map */

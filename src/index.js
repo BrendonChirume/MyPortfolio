@@ -6,8 +6,7 @@ import Root from "./App";
 import "normalize.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "./assets/css/main.css";
-import "normalize.css";
-import "aos/dist/aos.css";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 const App = (
   <BrowserRouter>

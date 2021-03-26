@@ -1,14 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import avator from "../assets/img/profile.jpg";
-import reactLogo from "../assets/img/react-dark-logo.png";
 
-export default function Navigation() {
+export default function Navigation({ createObserver }) {
   const handleSmoothScroll = event => {
     const target = event.target;
     const scrollToElem = document.querySelector(
       `#${target.href.split("/")[target.href.split("/").length - 1]}`
     );
+
+    createObserver();
 
     window.scroll({
       top: 2500,
@@ -32,16 +33,16 @@ export default function Navigation() {
 
   return (
     <nav className="position-relative h-100">
-      <div className="profile pt-3 mt-auto mb-5">
+      <h1 className="d-none">Navigation</h1>
+      <div className="profile pt-3 mt-auto mb-4">
         <div className="align-items-center avator d-flex justify-content-center mx-auto overflow-hidden rounded-circle text-center">
           <img src={avator} className="img-fluid" alt="avator" />
         </div>
-        <button className="btn bg-light shadow-none nav-btn btn-block mx-auto my-4">
+        <button className="btn bg-light shadow-none nav-btn btn-block mx-auto mt-4">
           Hire me!
         </button>
       </div>
-      <img src={reactLogo} className="pic-art" alt="" />
-      <ul className="nav-menu px-3">
+      <ul className="nav-menu px-3 mb-5">
         <li>
           <NavLink
             activeClassName="active-nav-link"
@@ -50,6 +51,7 @@ export default function Navigation() {
             data-role="home"
             onClick={handleSmoothScroll}
           >
+            <i className="fas fa-house-user mr-4"></i>
             Home
           </NavLink>
         </li>
@@ -61,7 +63,8 @@ export default function Navigation() {
             onClick={handleSmoothScroll}
             to="/about"
           >
-            About
+            <i className="fas fa-address-card mr-4"></i>
+            About Me
           </NavLink>
         </li>
         <li>
@@ -72,7 +75,32 @@ export default function Navigation() {
             onClick={handleSmoothScroll}
             to="/resume"
           >
+            <i className="fas fa-sticky-note mr-4"></i>
             Resume
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            activeClassName="active-nav-link"
+            className="text-decoration-none d-block w-100 px-3 scroll-spy-tab rounded-sm"
+            data-role="services"
+            onClick={handleSmoothScroll}
+            to="/services"
+          >
+            <i className="fas fa-server mr-4"></i>
+            Services
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            activeClassName="active-nav-link"
+            className="text-decoration-none d-block w-100 px-3 scroll-spy-tab rounded-sm"
+            data-role="portfolio"
+            onClick={handleSmoothScroll}
+            to="/portfolio"
+          >
+            <i className="fas fa-folder mr-4"></i>
+            Portfolio
           </NavLink>
         </li>
         <li>
@@ -83,6 +111,7 @@ export default function Navigation() {
             onClick={handleSmoothScroll}
             to="/contact"
           >
+            <i className="fas fa-phone-square-alt mr-4"></i>
             Contact
           </NavLink>
         </li>

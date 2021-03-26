@@ -15,7 +15,7 @@ body {
   color: #333333;
   font-size: 1rem;
   font-weight: normal;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: sans-serif;
   line-height: 1.43;
   overflow-y: scroll;
   letter-spacing: 0.018em;
@@ -66,15 +66,15 @@ aside {
   background: #111418;
   width: 300px;
   z-index: 5;
+  nav {
+    overflow-x: hidden;
+  }
   .avator {
     width: 170px;
     height: 170px;
   }
 
   .social-network {
-    position: absolute;
-    bottom: 2%;
-    left: 13%;
     li {
       list-style: none;
       font-size: 1.3rem;
@@ -82,6 +82,7 @@ aside {
       a {
         width: 40px;
         height: 40px;
+        z-index: 1;
         background-color: #4f5154;
       }
       .icoGoogle:hover {
@@ -117,6 +118,7 @@ aside {
     opacity: 0.2;
     right: -10%;
     bottom: -10%;
+    z-index: -1;
   }
   .nav-menu {
     height: 40%;
@@ -128,11 +130,20 @@ aside {
       list-style: none;
       a {
         color: #a8a9b4;
+        i {
+          font-size: 1.095rem;
+        }
+        transition: all 0.1s;
+        &:hover {
+          color: rgb(255, 255, 255);
+          background-color: rgba(0, 0, 0, 0.213);
+          transition: all 0.7s;
+        }
       }
       .active-nav-link {
         color: rgb(255, 255, 255);
-        background-color: #000;
-        transition: all 0.7s;
+        background-color: rgba(0, 0, 0, 0.446);
+        transition: background-color 0.7s;
       }
     }
   }
@@ -144,6 +155,21 @@ main {
     &:not(:first-child) {
       margin-left: 300px;
       transition: all ease-in-out 0.3s;
+      h2 {
+        &::after {
+          content: "";
+          border-bottom: 4px solid #1683d6;
+          width: 85px;
+          left: 0;
+          position: absolute;
+          bottom: 5px;
+          border-radius: 7px;
+        }
+      }
+    }
+    .fix {
+      height: 100vh;
+      width: 100%;
     }
     h2,
     h3 {
@@ -151,8 +177,7 @@ main {
       font-weight: 600;
     }
     &:first-child {
-      background: url("https://startbootstrap.github.io/startbootstrap-creative/assets/img/bg-masthead.jpg")
-        no-repeat;
+      background: url("../img/bg-masthead.jpg") no-repeat;
       background-attachment: fixed;
       background-size: cover;
       background-position: right 0 top 0%;
@@ -172,14 +197,15 @@ main {
         z-index: 1;
         left: 33%;
         line-height: 70px;
+        font-family: sans-serif;
         h2 {
-          font-family: "montserrat", sans-serif;
           font-size: 6.875rem;
-          font-weight: 900;
+          font-weight: 700;
           color: rgb(232, 232, 232);
+          -webkit-text-stroke: 2px rgb(232, 232, 232);
         }
         h6 {
-          font-size: 20px;
+          font-size: 23px;
           font-weight: 500;
         }
 
@@ -202,6 +228,30 @@ main {
           height: 30px;
         }
       }
+      [data-role="cursor"] {
+        border-right: 2px solid white;
+        font-size: 20px;
+      }
+      .blink {
+        animation: blink-animation 1s steps(5, start) infinite;
+        -webkit-animation: blink-animation 1s steps(5, start) infinite;
+      }
+      @keyframes blink-animation {
+        to {
+          visibility: hidden;
+        }
+      }
+      @-webkit-keyframes blink-animation {
+        to {
+          visibility: hidden;
+        }
+      }
+
+      [data-name="type-writer-effect"] {
+        padding-bottom: 3px;
+        margin-right: 2px;
+        border-bottom: 2px solid rgb(22, 131, 214);
+      }
     }
     &:nth-child(2) {
       li {
@@ -216,6 +266,14 @@ main {
       .progress-bar-wrap {
         height: 0.65rem;
       }
+      .show-more-btn {
+        cursor: pointer;
+      }
+      .credentials {
+        h3 {
+          color: #252b33;
+        }
+      }
       .skill {
         font-size: 1rem;
         font-family: "Poppins", sans-serif;
@@ -223,6 +281,20 @@ main {
       .progress-bar {
         background-color: #24292e;
       }
+    }
+  }
+  #reviews {
+    .quote-clients {
+      font-size: xxx-large;
+    }
+    .avator {
+      height: 73px;
+      width: 73px;
+      font-size: xx-large;
+    }
+    .mansory {
+      width: 225px;
+      height: 338px;
     }
   }
 }
@@ -234,12 +306,20 @@ footer {
   main {
     section {
       &:first-child {
+        background: url("../img//bg-masthead-mobile.jpg");
+        background-size: cover;
+        background-repeat: inherit;
         .name {
+          left: 10%;
+          bottom: 15%;
           h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
           }
           h2 {
-            font-size: 2.875rem;
+            font-size: 3.875rem;
+          }
+          [data-name="type-writer-effect"] {
+            padding-bottom: 2px;
           }
         }
       }
@@ -247,5 +327,12 @@ footer {
         margin-left: 0;
       }
     }
+  }
+}
+
+footer {
+  .pipe {
+    font-weight: 600;
+    font-size: 1rem;
   }
 }

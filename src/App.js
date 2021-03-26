@@ -3,15 +3,17 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Main from "./pages/Main";
 import AOS from "aos";
+import reactLogo from "./assets/img/react-dark-logo.png";
 
 export default function App() {
   const [clientWidth, setClientWidth] = React.useState(window.innerWidth);
+  const [scrollSpyTab, setScrollSpyTab] = React.useState("");
   const [sideBar, setSideBar] = React.useState(
     window.innerWidth <= 990 ? false : true
   );
+
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleScroll);
     const addClass = () => document.body.classList.add("mobile-nav-active");
 
     const removeClass = () =>
@@ -27,7 +29,6 @@ export default function App() {
     })();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, [sideBar, clientWidth]);
@@ -38,23 +39,37 @@ export default function App() {
     return setSideBar(e.currentTarget.innerWidth <= 990 ? false : true);
   };
 
-  const handleScroll = e => {
-    let elements, tabs;
-
+  React.useEffect(() => {
+    let tabs;
     tabs = Array.from(document.querySelectorAll(".scroll-spy-tab"));
+    tabs.map(tab =>
+      tab.getAttribute("data-role") === scrollSpyTab
+        ? tab.classList.add("active-nav-link")
+        : tab.classList.remove("active-nav-link")
+    );
+  }, [scrollSpyTab]);
+
+  const createObserver = () => {
+    let elements, options;
+
     elements = Array.from(
       document.querySelectorAll("[data-role='scroll-to-page']")
     );
 
-    elements.map(element => {
-      return element.getBoundingClientRect().y <= 0
-        ? tabs.map(tab => {
-            return tab.getAttribute("data-role") === element.id
-              ? tab.classList.add("active-nav-link")
-              : tab.classList.remove("active-nav-link");
-          })
-        : undefined;
-    });
+    options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: [0.5, 0.75, 1.0],
+    };
+
+    let callback = (entries, observer) => {
+      entries.forEach(entry => {
+        setScrollSpyTab(entry.target.id);
+      });
+    };
+
+    let observer = new IntersectionObserver(callback, options);
+    elements.map(element => observer.observe(element));
   };
 
   const isSideBarOpen = () => setSideBar(!sideBar);
@@ -81,7 +96,9 @@ export default function App() {
           className="position-fixed overflow-hidden"
           style={sideBar ? styles.btnInjected : styles.default}
         >
-          <Navigation sideBar={sideBar} />
+          <h1 className="d-none">Sidebar</h1>
+          <Navigation createObserver={createObserver} />
+          <img src={reactLogo} className="pic-art" alt="" />
         </aside>
       </header>
       <main>
