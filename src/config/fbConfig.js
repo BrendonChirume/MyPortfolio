@@ -2,15 +2,15 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD8b04AQh_KLVLj9W-BPaBM9prajsZsPo4",
-  authDomain: "new-project-3b585.firebaseapp.com",
-  databaseURL: "https://new-project-3b585.firebaseio.com",
-  projectId: "new-project-3b585",
-  storageBucket: "new-project-3b585.appspot.com",
-  messagingSenderId: "44025350887",
-  appId: "1:44025350887:web:e30316110f11d6d361b042",
-  measurementId: "G-T0HHRNFQET",
+  apiKey: "AIzaSyB2k5viX8rUjrWqLK-7dHoW_d-m8eo2YcQ",
+  authDomain: "myportfolio-92c49.firebaseapp.com",
+  projectId: "myportfolio-92c49",
+  storageBucket: "myportfolio-92c49.appspot.com",
+  messagingSenderId: "443559722420",
+  appId: "1:443559722420:web:5149f9ac772ce1dd8246e1",
+  measurementId: "G-66499EZJ90",
 };
 firebase.initialize(firebaseConfig);
 firebase.firestore().settings({ timestapInSnapShots: true });
